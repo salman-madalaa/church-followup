@@ -1,0 +1,73 @@
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" >
+</mat-form-field>
+<button mat-raised-button color="primary" style="float: right;margin-right: 10px;margin-top: 70px;" (click)="AddNew()"><span class="material-icons">
+  person_add</span>
+</button>
+<button mat-raised-button color="primary" style="float: right;margin-right: 10px;margin-top: 70px;" (click)="getallPersons()"><span class="material-icons">
+  refresh</span>
+</button>
+
+<div class="example-containerr mat-elevation-z8">
+   
+    <table id="table" mat-table [dataSource]="dataSource" matSort   class="mat-elevation-z8">  
+  
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Name </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Date </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.date}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.address}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header > Email </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.email}} </td>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> PhoneNumber </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.phoneNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="prayerRequest">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> prayerRequest </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.prayerRequest}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="personId">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> AssignTo </th>
+        <td mat-cell *matCellDef="let registration"> {{registration.personId}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef > Actions </th>   
+        <td mat-cell *matCellDef="let registration"> 
+          <button mat-raised-button color="primary" (click)="editRecord(registration)" ><mat-icon>edit</mat-icon></button>  &nbsp;
+          <button mat-raised-button color="warn" (click)="delete(registration.id)" ><mat-icon >delete</mat-icon></button> 
+        </td>
+      </ng-container>
+     
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  <!---------------pagenater--------------->
+  <mat-paginator #paginator
+              [pageIndex]="0"
+              [pageSize]="10"
+              [pageSizeOptions]="[2, 4, 6, 10, 20]">
+</mat-paginator>
+
+</div>
+
+
+
